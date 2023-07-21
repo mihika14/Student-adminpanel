@@ -42,6 +42,7 @@ const HomePage = () => {
       <Link to="/createtask">
         <button className="addbtn">Create Task</button>
       </Link>
+   
     </div>
   );
 };

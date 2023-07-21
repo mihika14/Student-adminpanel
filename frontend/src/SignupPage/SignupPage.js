@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./SignupPage.css"
+import "./SignupPage.css";
 
 export default class SignupPage extends Component {
   constructor(props) {
@@ -17,31 +17,32 @@ export default class SignupPage extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    fetch("http://localhost:5000/createuser" , {
-        method: "POST",
-        crossDomain:true,   //to ensure that the server allows cross-origin requests.
-        headers:{
-            'Content-Type':"application/json",
-            Accept:"application/json",
-            "Access-Control-Allow-Origin":"https://localhost:3000",
-        },
-        body:JSON.stringify({
-            email,
-            password
-        })
-    }).then((res)=>res.json())
-    .then((data) =>{
-        console.log(data, "userRegister");
-
+    fetch("http://localhost:5000/createuser", {
+      method: "POST",
+      crossDomain: true, //to ensure that the server allows cross-origin requests.
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "https://localhost:3000",
+      },
+      body: JSON.stringify({
+        email,
+        password
+      }),
     })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+      });
   }
   render() {
     return (
       <>
-        <div class="form-box">
-          <form class="form" onSubmit={this.handleSubmit}>
+        <div class="formpage">
+          <div className='form'>
+          <form class="form-container" onSubmit={this.handleSubmit}>
             <span class="title">Sign up</span>
-            <div class="form-container">
+            <div class="form-group">
               <input
                 type="email"
                 class="input"
@@ -59,11 +60,13 @@ export default class SignupPage extends Component {
             </div>
 
             <button>Sign up</button>
-          </form>
-          <div class="form-section">
+            <div class="form-section">
             <p>
-              Have an account? <Link to ='/loginpage'>Log in</Link>
+              Already Have an account? <Link to="/loginpage">Log in</Link>
             </p>
+          </div>
+          </form>
+        
           </div>
         </div>
       </>

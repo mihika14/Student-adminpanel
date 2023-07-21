@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./CreateTask.css";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 export default class CreateTask extends Component {
   constructor(props) {
@@ -31,18 +31,17 @@ export default class CreateTask extends Component {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "task created");
-        if( data.status === "ok"){
-            Swal.fire({
-                icon: "success",
-                text: "You have succesfully created a task",
-              });
-        }else{
-            Swal.fire({
-                icon: "error",
-                text: "Enter Details",
-              });
+        if (data.status === "ok") {
+          Swal.fire({
+            icon: "success",
+            text: "You have succesfully created a task",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            text: "Enter Details",
+          });
         }
-        
       });
   }
 
@@ -73,7 +72,12 @@ export default class CreateTask extends Component {
                 />
               </div>
 
-              <button className="form-submit-btn">Create Task</button>
+              <div className="buttons-task">
+                <button className="form-submit-btn">Create Task</button>
+                <Link to="/homepage">
+                  <button className="form-submit-btn">Go to homepage</button>
+                </Link>
+              </div>
             </form>
           </div>
         </div>

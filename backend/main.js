@@ -47,16 +47,16 @@ app.post("/createuser", async (req, res) => {
 app.post("/loginuser", async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await usercredential.findOne({ email });
+  const usercredential = await user.findOne({ email });
 
-  if (!user) {
+  if (!usercredential) {
     return res.json({ error: "User not found" });
   }
 
-  if (password === user.password) {
-    const token = jwt.sign({}, JWT_SECRET);
+  if (password === usercredential.password) {
+    // const token = jwt.sign({}, JWT_SECRET);
     if (res.status(201)) {
-      return res.json({ status: "ok", data: token });
+      return res.json({ status: "ok", data: password });
     } else {
       return res.json({ error: "error" });
     }
@@ -69,14 +69,14 @@ app.post("/loginuser", async (req, res) => {
 const userdata = mongoose.model("users");
 
 // code to get all the details of the users
-app.get("/users", function (req, rest) {
- try{
-    const allUser = await.userdata.find({})
-    res.send({status: "ok" , data: allUser})
- }catch (error){
-    console.log(error)
- }
+app.get("/users", function (req, res, next) {
+  userdata.find({})
+    .then(function (users) {
+      res.send(users);
+    })
+    .catch(next);
 });
+
 
 // code for new notes
 app.post("/createdata", async (req, res) => {

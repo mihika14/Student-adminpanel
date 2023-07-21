@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LoginPage.css";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import '../SignupPage/SignupPage.css'
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -31,7 +31,6 @@ const LoginPage = () => {
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status === "ok") {
-          window.localStorage.setItem("token", data.data);
           navigate("/homepage");
           Swal.fire({
             icon: "success",
@@ -48,10 +47,11 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="form-box">
-        <form className="form" onSubmit={handleSubmit}>
+    <div className="formpage">
+      <div className="form">
+        <form className="form-container" onSubmit={handleSubmit}>
           <span className="title">Log in</span>
-          <div className="form-container">
+          <div className="form-group">
             <input
               type="email"
               className="input"
@@ -71,11 +71,12 @@ const LoginPage = () => {
           </div>
 
           <button type="submit">Login</button>
-        </form>
-        <div className="form-section">
-          <p>
+          <div className="form-section">
+          <p >
             Don't have an account? <Link to="/signuppage">Sign Up</Link>
           </p>
+        </div>
+        </form>
         </div>
       </div>
     </>

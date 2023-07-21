@@ -1,10 +1,13 @@
 body{
-    background:linear-gradient(#212121, #212121) padding-box,
-    linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
-}
-
-.header{
-   color:white;
+    background:linear-gradient(
+        45deg,
+        #142d4c 0%,
+        #142d4c 10%,
+        #1a3f6f 20%,
+        #142d4c 30%,
+        #142d4c 40%,
+        #142d4c 90%,
+        #142d4c 100%)
 }
 
 .userlist {
@@ -17,11 +20,12 @@ align-items: center;
 
 .addbtn {
 border: 2px solid #24b4fb;
-background-color: #24b4fb;
+background-color: white;
 border-radius: 0.9em;
 padding: 0.8em 1.2em 0.8em 1em;
 transition: all ease-in-out 0.2s;
 font-size: 16px;
+font-family: cursive;
 }
 
 
@@ -49,15 +53,24 @@ margin-left: 24px;
 
 .ui.table {
     width: 800px;
-    background: linear-gradient(#212121, #212121) padding-box,
-                linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+    background: #9fd3c7;
     margin: 1em 0;
-    border: 1px solid rgba(34,36,38,.15);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-radius: 0.28571429rem;
+    border: 1px solid rgba(6, 6, 6, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
     text-align: center;
     color: white;
     border-collapse: separate;
     border-spacing: 0;
+}
+
+.ui.table td{
+    color: black;
+    font-family: cursive;
+}
+
+.ui.table thead th{
+    color: black;
+    font-family: cursive;
+    font-size: 20px;
 }
