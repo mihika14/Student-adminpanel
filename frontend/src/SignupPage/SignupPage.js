@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./SignupPage.css";
+import Swal from "sweetalert2";
 
 export default class SignupPage extends Component {
   constructor(props) {
@@ -27,48 +28,58 @@ export default class SignupPage extends Component {
       },
       body: JSON.stringify({
         email,
-        password
+        password,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
+        if (data.error === "User Exists") {
+          Swal.fire({
+            icon: "error",
+            text: "User Already Exists",
+          });
+        } else if (data.status === "ok") {
+          Swal.fire({
+            icon: "success",
+            text: "You have succesfully created an account",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            text: "Enter Credentials",
+          });
+        }
       });
   }
   render() {
     return (
       <>
-        <div class="formpage">
-          <div className='form'>
-          <form class="form-container" onSubmit={this.handleSubmit}>
-            <span class="title">Sign up</span>
-            <div class="form-group">
-              <input
-                type="email"
-                class="input"
-                placeholder="Email"
-                onChange={(e) => this.setState({ email: e.target.value })} // updates the email with the new value entered by the user.
-              />
+          <div className="form">
+            <form class="form-container" onSubmit={this.handleSubmit}>
+              <span class="title">Sign up</span>
+              <div class="form-group">
+                <label className="label">Enter Email-ID</label>
+                <input
+                  type="email"
+                  class="input"
+                  placeholder="Email"
+                  onChange={(e) => this.setState({ email: e.target.value })}
+                />
+                <label className="label">Enter Password</label>
+                <input
+                  type="password"
+                  class="input"
+                  placeholder="Password"
+                  autoComplete="on"
+                  onChange={(e) => this.setState({ password: e.target.value })}
+                />
+              </div>
 
-              <input
-                type="password"
-                class="input"
-                placeholder="Password"
-                autoComplete="on"
-                onChange={(e) => this.setState({ password: e.target.value })} // updates the password with the new value entered by the user.
-              />
-            </div>
-
-            <button>Sign up</button>
-            <div class="form-section">
-            <p>
-              Already Have an account? <Link to="/loginpage">Log in</Link>
-            </p>
+              <button>Sign up</button>
+          
+            </form>
           </div>
-          </form>
-        
-          </div>
-        </div>
       </>
     );
   }

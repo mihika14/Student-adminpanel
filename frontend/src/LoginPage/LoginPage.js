@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import '../SignupPage/SignupPage.css'
+import "../SignupPage/SignupPage.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -10,9 +10,10 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();  //prevemts the automatic submission
+    e.preventDefault(); //prevemts the automatic submission
     console.log(email, password);
-    fetch("http://localhost:5000/loginuser", {     //fetch makes post request to retrieve email and password
+    fetch("http://localhost:5000/loginuser", {
+      //fetch makes post request to retrieve email and password
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,9 +25,7 @@ const LoginPage = () => {
         password,
       }),
     })
-
-    // checks if "ok" is recieved from the backend then provides access to the task manager
-    //useNavigate link to the homepage
+      // checks if "ok" is recieved from the backend then provides access to the task manager    
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
@@ -36,22 +35,27 @@ const LoginPage = () => {
             icon: "success",
             text: "You have succesfully logged in",
           });
-        }else{
+        } else if(!email || !password){
           Swal.fire({
             icon: "error",
-            text: "Sign up",
-          });
+            text: "Enter Credentials",
+          });         
+        }else{
+          Swal.fire({
+            icon: "warning",
+            title:"Invalid credentials!",
+        })
         }
       });
   };
 
   return (
     <>
-    <div className="formpage">
       <div className="form">
         <form className="form-container" onSubmit={handleSubmit}>
           <span className="title">Log in</span>
           <div className="form-group">
+            <label className="label">Enter Email-ID</label>
             <input
               type="email"
               className="input"
@@ -59,7 +63,7 @@ const LoginPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-
+            <label className="label">Enter Password</label>
             <input
               type="password"
               className="input"
@@ -71,13 +75,7 @@ const LoginPage = () => {
           </div>
 
           <button type="submit">Login</button>
-          <div className="form-section">
-          <p >
-            Don't have an account? <Link to="/signuppage">Sign Up</Link>
-          </p>
-        </div>
         </form>
-        </div>
       </div>
     </>
   );

@@ -1,0 +1,15 @@
+{
+  "name": "your-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm-run-all --parallel backend frontend", 
+    "backend": "node backend/main.js",
+    "frontend": "cd frontend && npm start" 
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+    
+  }
+  
+}
+

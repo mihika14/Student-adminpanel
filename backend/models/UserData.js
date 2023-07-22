@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 const userDataSchema = new mongoose.Schema(
     {
-        day: { type: String, required: true },
-        description: { type: String, required: true },
+        name: { type: String, required: true },
+        rollno: { type: Number, required: true },
+        section: { type: String, required: true }
     },
     {
       collection: "users",
